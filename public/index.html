@@ -55,16 +55,18 @@ $(this).addClass('active');
 var imageurl;
 var imagealt;
 
+var sdk = new window.sfdc.BlockSDK();
+// do something with the sdk
+
 $("img").click(function(){
   var imagealt = $(this).attr("alt");
   var imageurl = $(this).attr("src");
   console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
+  sdk.setContent(imagealt);
+  sdk.setSuperContent('This is super content: ' + imageurl);
+
 });
 
-      var sdk = new window.sfdc.BlockSDK();
-      // do something with the sdk
-      sdk.setContent(imagealt);
-			sdk.setSuperContent('This is super content: ' + imageurl);
     </script>
 </body>
 
