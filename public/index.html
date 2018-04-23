@@ -34,7 +34,38 @@
         <img class = "all two" border="0" src="avatar2.jpg" alt="image5" width="100" height="100">
         <img class = "all three" border="0" src="avatar3.jpg" alt="image6" width="100" height="100">
     </div>
-  	<script src="main.js"></script>
+    <script src="blocksdk.js"></script>
+<!--  	<script src="main.js"></script> -->
+<script>
+
+var $btns = $('.slds-button_neutral').click(function() {
+// if all is selected show all elements in main div - by default the page loads with all values selected
+if (this.id == 'all') {
+    $('#cms-images > img').show();
+} else {
+    // take id from selected button and create var with class value same as id, hide those elements that don't have that class
+    var $el = $('.' + this.id).show();
+    $('#cms-images > img').not($el).hide();
+}
+// remove active class from all buttons
+$btns.removeClass('active');
+// add active class to selected button
+$(this).addClass('active');
+})
+var imageurl;
+var imagealt;
+
+$("img").click(function(){
+  var imagealt = $(this).attr("alt");
+  var imageurl = $(this).attr("src");
+  console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
+});
+
+      var sdk = new window.sfdc.BlockSDK();
+      // do something with the sdk
+      sdk.setContent(imagealt);
+			sdk.setSuperContent('This is super content: ' + imageurl);
+    </script>
 </body>
 
 </html>
