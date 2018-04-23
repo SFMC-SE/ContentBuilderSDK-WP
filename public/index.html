@@ -60,7 +60,7 @@ var sdk = new window.sfdc.BlockSDK();
 
 $("img").click(function(){
   var imagealt = $(this).attr("alt");
-  var imageurl = $(this).attr("src");
+  var imageurl = $(this).attr("src", urlAbsolute);
   var link = "www.google.com";
   console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
 //  sdk.setContent(imagealt);
