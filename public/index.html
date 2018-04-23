@@ -60,12 +60,12 @@ var sdk = new window.sfdc.BlockSDK();
 
 $("img").click(function(){
   var imagealt = $(this).attr("alt");
-  var imageurl = $(this).attr("src", urlAbsolute);
+  var imageurl = $(this).attr("src");
   var link = "www.google.com";
   console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
 //  sdk.setContent(imagealt);
 //  sdk.setSuperContent('This is super content: ' + imageurl);
-  sdk.setContent('<a href="' + link + '"><img src="https://acates-quill-copy.herokuapp.com/' + imageurl + '" /></a>');
+  sdk.setContent('<a href="' + link + '"><img height="100" width="100" src="https://acates-quill-copy.herokuapp.com/' + imageurl + '" /></a>');
 });
 
     </script>
