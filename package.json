@@ -1,19 +1,12 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.2.5",
-  "description": "A sample Node.js app using Express 4",
-  "engines": {
-    "node": "5.9.1"
-  },
+  "name": "cb-wordpress",
+  "version": "0.0.1",
+  "description": "Content Builder SDK app to simulate DAM integration",
+  "author": "Tyler Vickers & Aaron Cates",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "build": "webpack ./src/main.js public/main.js"
-  },
   "dependencies": {
     "express": "4.13.3",
     "@salesforce-ux/design-system": "^2.5.2",
-    "blocksdk": "git+https://github.com/salesforce-marketingcloud/blocksdk.git",
-    "webpack": "^3.5.5"
+    "blocksdk": "^1.0.0"
   }
 }
