@@ -102,15 +102,15 @@ $("img").click(function(){
   var height;
   var width;
   var link = $('#image-link').val();
-  var height= $('#slider-image-height-val').val();
-  var width= $('#slider-image-width-val').val();
+  var height= $('#slider-image-height-val').text();
+  var width= $('#slider-image-width-val').text();
 
 //  var link = "www.google.com";
   console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
   console.log("height" + height + "|| width " + width);
 //  sdk.setContent(imagealt);
 //  sdk.setSuperContent('This is super content: ' + imageurl);
-  sdk.setContent('<a href="' + link + '"><img height="300" width="300" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
+  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
 });
 
     </script>
