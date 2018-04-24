@@ -20,26 +20,14 @@
       <h4 class="slds-text-heading_small">Use the buttons to toggle images</h3>
       </div>
     </div>
-    <div id="cms-filter-buttons" class="slds-button-group slds-p-around_x-large" role="group">
-      <button id="all" class="slds-button_neutral active">All</button>
-      <button id="one" class="slds-button_neutral">One</button>
-      <button id="two" class="slds-button_neutral">Two</button>
-      <button id="three" class="slds-button_neutral">Three</button>
-    </div>
-    <div id="cms-images">
-        <img class = "all one" border="0" src="avatar1.jpg" alt="image1" width="100" height="100">
-        <img class = "all two" border="0" src="avatar2.jpg" alt="image2" width="100" height="100">
-        <img class = "all three" border="0" src="avatar3.jpg" alt="image3" width="100" height="100">
-        <img class = "all one" border="0" src="avatar1.jpg" alt="image4" width="100" height="100">
-        <img class = "all two" border="0" src="avatar2.jpg" alt="image5" width="100" height="100">
-        <img class = "all three" border="0" src="avatar3.jpg" alt="image6" width="100" height="100">
-    </div>
+    <!-- image link -->
     <div class="slds-form-element">
       <label class="slds-form-element__label" for="image-link">Image Link</label>
       <div class="slds-form-element__control">
         <input type="text" id="image-link" class="slds-input" placeholder="Ex. http://www.salesforce.com/" />
       </div>
     </div>
+    <!-- /image link -->
     <!-- image width -->
     <div class="slds-form-element">
       <label class="slds-form-element__label" for="slider-image-width">
@@ -70,6 +58,24 @@
       </div>
     </div>
     <!-- /image height -->
+    <!-- image filters -->
+    <div id="cms-filter-buttons" class="slds-button-group slds-p-around_x-large" role="group">
+      <button id="all" class="slds-button_neutral active">All</button>
+      <button id="one" class="slds-button_neutral">One</button>
+      <button id="two" class="slds-button_neutral">Two</button>
+      <button id="three" class="slds-button_neutral">Three</button>
+    </div>
+    <!-- /image filters -->
+    <!-- returned images -->
+    <div id="cms-images">
+        <img class = "all one" border="0" src="avatar1.jpg" alt="image1" width="100" height="100">
+        <img class = "all two" border="0" src="avatar2.jpg" alt="image2" width="100" height="100">
+        <img class = "all three" border="0" src="avatar3.jpg" alt="image3" width="100" height="100">
+        <img class = "all one" border="0" src="avatar1.jpg" alt="image4" width="100" height="100">
+        <img class = "all two" border="0" src="avatar2.jpg" alt="image5" width="100" height="100">
+        <img class = "all three" border="0" src="avatar3.jpg" alt="image6" width="100" height="100">
+    </div>
+    <!-- /returned images -->
     <script src="blocksdk.js"></script>
 <!--  	<script src="main.js"></script> -->
 <script>
@@ -98,9 +104,7 @@ $("img").click(function(){
   var imagealt = $(this).attr("alt");
   var imageurl = $(this).attr("src");
   // set input from image-link as href of selected image
-  var link;
-  var height;
-  var width;
+  var link, height, width;
   var link = $('#image-link').val();
   var height= $('#slider-image-height-val').text();
   var width= $('#slider-image-width-val').text();
