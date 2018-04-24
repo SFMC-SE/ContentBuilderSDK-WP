@@ -34,9 +34,18 @@
         <img class = "all two" border="0" src="avatar2.jpg" alt="image5" width="100" height="100">
         <img class = "all three" border="0" src="avatar3.jpg" alt="image6" width="100" height="100">
     </div>
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="image-link">Image Link</label>
+      <div class="slds-form-element__control">
+        <input type="text" id="image-link" class="slds-input" placeholder="Ex. http://www.salesforce.com/" />
+      </div>
+    </div>
     <script src="blocksdk.js"></script>
 <!--  	<script src="main.js"></script> -->
 <script>
+// set input from image-link as href of selected image
+var link;
+var link = $('#image-link').val();
 
 var $btns = $('.slds-button_neutral').click(function() {
 // if all is selected show all elements in main div - by default the page loads with all values selected
@@ -61,7 +70,7 @@ var sdk = new window.sfdc.BlockSDK();
 $("img").click(function(){
   var imagealt = $(this).attr("alt");
   var imageurl = $(this).attr("src");
-  var link = "www.google.com";
+//  var link = "www.google.com";
   console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
 //  sdk.setContent(imagealt);
 //  sdk.setSuperContent('This is super content: ' + imageurl);
