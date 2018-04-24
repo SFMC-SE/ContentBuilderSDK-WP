@@ -40,6 +40,36 @@
         <input type="text" id="image-link" class="slds-input" placeholder="Ex. http://www.salesforce.com/" />
       </div>
     </div>
+    <!-- image width -->
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="slider-image-width">
+        <span class="slds-slider-label">
+          <span class="slds-slider-label__label">Image Width</span>
+        </span>
+      </label>
+      <div class="slds-form-element__control">
+        <div class="slds-slider">
+          <input type="range" id="slider-image-width" class="slds-slider__range" value="200" min="100" max="800" />
+          <span class="slds-slider__value" id="slider-image-width-val" aria-hidden="true">200</span>
+        </div>
+      </div>
+    </div>
+    <!-- /image width -->
+    <!-- image height -->
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="slider-image-height">
+        <span class="slds-slider-label">
+          <span class="slds-slider-label__label">Image Height</span>
+        </span>
+      </label>
+      <div class="slds-form-element__control">
+        <div class="slds-slider">
+          <input type="range" id="slider-image-height" class="slds-slider__range" value="200" min="100" max="800" />
+          <span class="slds-slider__value" id="slider-image-height-val" aria-hidden="true">200</span>
+        </div>
+      </div>
+    </div>
+    <!-- /image height -->
     <script src="blocksdk.js"></script>
 <!--  	<script src="main.js"></script> -->
 <script>
@@ -69,9 +99,15 @@ $("img").click(function(){
   var imageurl = $(this).attr("src");
   // set input from image-link as href of selected image
   var link;
+  var height;
+  var width;
   var link = $('#image-link').val();
+  var height= $('#slider-image-height-val').val();
+  var width= $('#slider-image-width-val').val();
+
 //  var link = "www.google.com";
   console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
+  console.log("height" + height + "|| width " + width);
 //  sdk.setContent(imagealt);
 //  sdk.setSuperContent('This is super content: ' + imageurl);
   sdk.setContent('<a href="' + link + '"><img height="300" width="300" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
