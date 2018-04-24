@@ -43,9 +43,6 @@
     <script src="blocksdk.js"></script>
 <!--  	<script src="main.js"></script> -->
 <script>
-// set input from image-link as href of selected image
-var link;
-var link = $('#image-link').val();
 
 var $btns = $('.slds-button_neutral').click(function() {
 // if all is selected show all elements in main div - by default the page loads with all values selected
@@ -70,6 +67,9 @@ var sdk = new window.sfdc.BlockSDK();
 $("img").click(function(){
   var imagealt = $(this).attr("alt");
   var imageurl = $(this).attr("src");
+  // set input from image-link as href of selected image
+  var link;
+  var link = $('#image-link').val();
 //  var link = "www.google.com";
   console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
 //  sdk.setContent(imagealt);
