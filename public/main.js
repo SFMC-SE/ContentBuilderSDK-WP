@@ -122,12 +122,20 @@ $(this).addClass('active');
 //  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
 //});
 
-document.getElementById('blockcontainer').addEventListener("input", function () {
+document.getElementById('slider-image-width').addEventListener("input", function () {
 	debounce(setImage, 500)();
 	sliderValues();
 });
 
-document.getElementById('blockcontainer').addEventListener("click", function () {
+document.getElementById('slider-image-height').addEventListener("input", function () {
 	debounce(setImage, 500)();
 	sliderValues();
+});
+
+document.getElementById('image-link').addEventListener("blur", function () {
+	debounce(setImage, 500)();
+});
+
+document.getElementById('cms-images').addEventListener("click", function () {
+	debounce(setImage, 500)();
 });
