@@ -57,8 +57,8 @@ sdk.getData(function (data) {
 	height = data.height || 300;
 	imageurl = data.imageurl || '';
 	blockSettings();
-	sliderValues();
 	setImage();
+	sliderValues();
 });
 
 // BUTTONS
@@ -98,7 +98,7 @@ document.getElementById('cms-images').addEventListener("click", function () {
 	debounce(setImage, 500)();
 });
 
-sliderValues();
+
 //old code
 
 // old code to set SDK values
