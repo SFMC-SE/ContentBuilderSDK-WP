@@ -58,7 +58,8 @@ function setImage() {
 //	  console.log("height" + height + "|| width " + width);
 	//  sdk.setContent(imagealt);
 	//  sdk.setSuperContent('This is super content: ' + imageurl);
-	  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
+//	  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
+		sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a>');
 		sdk.setData({
 			link: link,
 			width: width,
