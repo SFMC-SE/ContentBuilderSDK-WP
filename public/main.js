@@ -61,6 +61,28 @@ sdk.getData(function (data) {
 	setImage();
 });
 
+// EVENT LISTENERS
+
+document.getElementById('slider-image-width').addEventListener("input", function () {
+	debounce(setImage, 500)();
+	sliderValues();
+});
+
+document.getElementById('slider-image-height').addEventListener("input", function () {
+	debounce(setImage, 500)();
+	sliderValues();
+});
+
+document.getElementById('image-link').addEventListener("blur", function () {
+	debounce(setImage, 500)();
+	sliderValues();
+});
+
+document.getElementById('cms-images').addEventListener("click", function () {
+	debounce(setImage, 500)();
+	sliderValues();
+});
+
 // BUTTONS
 // filter results based on buttons selected
 var $btns = $('.slds-button_neutral').click(function() {
@@ -78,30 +100,6 @@ $btns.removeClass('active');
 $(this).addClass('active');
 })
 
-// EVENT LISTENERS
-
-document.getElementById('block-container').addEventListener("input", function () {
-	debounce(setImage, 500)();
-	sliderValues();
-});
-
-//document.getElementById('slider-image-width').addEventListener("input", function () {
-//	debounce(setImage, 500)();
-//	sliderValues();
-//});
-
-//document.getElementById('slider-image-height').addEventListener("input", function () {
-//	debounce(setImage, 500)();
-//	sliderValues();
-//});
-
-//document.getElementById('image-link').addEventListener("blur", function () {
-//	debounce(setImage, 500)();
-//});
-
-//document.getElementById('cms-images').addEventListener("click", function () {
-//	debounce(setImage, 500)();
-//});
 
 
 //old code
