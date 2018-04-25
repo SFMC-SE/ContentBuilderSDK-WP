@@ -122,7 +122,7 @@ $(this).addClass('active');
 //  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
 //});
 
-document.getElementById('blockcontainer').addEventListener("input", "click" function () {
+document.getElementById('blockcontainer').addEventListener("input", function () {
 	debounce(setImage, 500)();
 	sliderValues();
 });
