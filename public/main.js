@@ -97,10 +97,8 @@ document.getElementById('image-link').addEventListener("blur", function () {
 document.getElementById('cms-images').addEventListener("click", function () {
 	debounce(setImage, 500)();
 });
-document.onload = function(){
-	sliderValues();
-};
 
+sliderValues();
 //old code
 
 // old code to set SDK values
