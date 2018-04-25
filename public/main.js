@@ -73,7 +73,7 @@ sdk.getData(function (data) {
 	link = data.link || '';
 	width = data.width || 300;
 	height = data.height || 300;
-	link = data.link || '';
+	imageurl = data.imageurl || '';
 	blockSettings();
 	sliderValues();
 	setImage();
@@ -122,7 +122,7 @@ $(this).addClass('active');
 //  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
 //});
 
-document.getElementById('blockcontainer').addEventListener("input", function () {
+document.getElementById('blockcontainer').addEventListener("input", "click" function () {
 	debounce(setImage, 500)();
 	sliderValues();
 });
