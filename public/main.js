@@ -1,6 +1,4 @@
 
-var imageurl, imagealt;
-
 // SDK
 var sdk = new window.sfdc.BlockSDK();
 
@@ -21,7 +19,7 @@ function debounce (func, wait, immediate) {
 	};
 }
 
-// look into setting selected state for image and embedding in setImage function
+// append an id to the selected image and remove id from any other selected images
 $("img").click(function() {
 	$("img").removeAttr("id");
 	$(this).attr('id', 'selected-image');
@@ -44,22 +42,6 @@ function setImage() {
 	width = document.getElementById('slider-image-width').value;
 	height = document.getElementById('slider-image-height').value;
 	imageurl = document.getElementById('selected-image').src;
-//	imageurl = "avatar1.jpg";
-	//set function to define image as active class
-//	$("img").click(function(){
-//	  var imagealt = $(this).attr("alt");
-//	  var imageurl = $(this).attr("src");
-	  // set input from image-link as href of selected image
-//	  var link = $('#image-link').val();
-//	  var height= $('#slider-image-height').val();
-//	  var width= $('#slider-image-width').val();
-
-	//  var link = "www.google.com";
-//	  console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
-//	  console.log("height" + height + "|| width " + width);
-	//  sdk.setContent(imagealt);
-	//  sdk.setSuperContent('This is super content: ' + imageurl);
-//	  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
 		sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a>');
 		sdk.setData({
 			link: link,
@@ -73,19 +55,11 @@ sdk.getData(function (data) {
 	link = data.link || '';
 	width = data.width || 300;
 	height = data.height || 300;
-	imageurl = data.imageurl || 'https://i1.wp.com/martechseries.com/wp-content/uploads/2017/06/salesforce-3.png';
+	imageurl = data.imageurl || '';
 	blockSettings();
 	sliderValues();
 	setImage();
 });
-// SLIDERS
-// Update the displayed value of the sliders
-//$("#slider-image-width").change(function() {
-//  $('#slider-image-width-val').text($(this).val());
-//});
-//$("#slider-image-height").change(function() {
-//  $('#slider-image-height-val').text($(this).val());
-//});
 
 // BUTTONS
 // filter results based on buttons selected
@@ -104,23 +78,7 @@ $btns.removeClass('active');
 $(this).addClass('active');
 })
 
-// old code to set SDK values
-//$("img").click(function(){
-//  var imagealt = $(this).attr("alt");
-//  var imageurl = $(this).attr("src");
-  // set input from image-link as href of selected image
-//  var link, height, width;
-//  var link = $('#image-link').val();
-//  var height= $('#slider-image-height').val();
-//  var width= $('#slider-image-width').val();
-
-//  var link = "www.google.com";
-//  console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
-//  console.log("height" + height + "|| width " + width);
-//  sdk.setContent(imagealt);
-//  sdk.setSuperContent('This is super content: ' + imageurl);
-//  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
-//});
+// EVENT LISTENERS
 
 document.getElementById('slider-image-width').addEventListener("input", function () {
 	debounce(setImage, 500)();
@@ -143,3 +101,50 @@ document.getElementById('cms-images').addEventListener("click", function () {
 document.getElementById('blockcontainer').addEventListener("change", function () {
 	sliderValues();
 });
+
+
+//old code
+
+// old code to set SDK values
+//$("img").click(function(){
+//  var imagealt = $(this).attr("alt");
+//  var imageurl = $(this).attr("src");
+  // set input from image-link as href of selected image
+//  var link, height, width;
+//  var link = $('#image-link').val();
+//  var height= $('#slider-image-height').val();
+//  var width= $('#slider-image-width').val();
+
+//  var link = "www.google.com";
+//  console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
+//  console.log("height" + height + "|| width " + width);
+//  sdk.setContent(imagealt);
+//  sdk.setSuperContent('This is super content: ' + imageurl);
+//  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
+//});
+
+// SLIDERS
+// Update the displayed value of the sliders
+//$("#slider-image-width").change(function() {
+//  $('#slider-image-width-val').text($(this).val());
+//});
+//$("#slider-image-height").change(function() {
+//  $('#slider-image-height-val').text($(this).val());
+//});
+
+//	imageurl = "avatar1.jpg";
+	//set function to define image as active class
+//	$("img").click(function(){
+//	  var imagealt = $(this).attr("alt");
+//	  var imageurl = $(this).attr("src");
+	  // set input from image-link as href of selected image
+//	  var link = $('#image-link').val();
+//	  var height= $('#slider-image-height').val();
+//	  var width= $('#slider-image-width').val();
+
+	//  var link = "www.google.com";
+//	  console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
+//	  console.log("height" + height + "|| width " + width);
+	//  sdk.setContent(imagealt);
+	//  sdk.setSuperContent('This is super content: ' + imageurl);
+//	  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
