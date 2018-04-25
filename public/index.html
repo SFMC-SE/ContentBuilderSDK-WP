@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <!-- /block header -->
   <div class="slds-card__header slds-grid">
     <header class="slds-media slds-media_center slds-has-flexi-truncate">
       <div class="slds-media__figure">
@@ -30,6 +31,8 @@
       </div>
     </header>
   </div>
+  <!-- /block header -->
+  <div id="blockcontainer">
     <!-- image link -->
     <div class="slds-form-element">
       <label class="slds-form-element__label" for="image-link">Image Link</label>
@@ -76,7 +79,7 @@
       <button id="three" class="slds-button_neutral">Three</button>
     </div>
     <!-- /image filters -->
-    <!-- returned images -->
+    <!-- returned images - replace with API call return values instead of static -->
     <div id="cms-images">
         <img class = "all one" border="0" src="avatar1.jpg" alt="image1" width="100" height="100">
         <img class = "all two" border="0" src="avatar2.jpg" alt="image2" width="100" height="100">
@@ -85,59 +88,11 @@
         <img class = "all two" border="0" src="avatar2.jpg" alt="image5" width="100" height="100">
         <img class = "all three" border="0" src="avatar3.jpg" alt="image6" width="100" height="100">
     </div>
+  </div>
     <!-- /returned images -->
     <script src="blocksdk.js"></script>
+    <script src="main.js"></script>
 <!--  	<script src="main.js"></script> -->
-<script>
-
-// SLIDERS
-// Update the displayed value of the sliders
-$("#slider-image-width").change(function() {
-  $('#slider-image-width-val').text($(this).val());
-});
-$("#slider-image-height").change(function() {
-  $('#slider-image-height-val').text($(this).val());
-});
-
-// BUTTONS
-// filter results based on buttons selected
-var $btns = $('.slds-button_neutral').click(function() {
-// if all is selected show all elements in main div - by default the page loads with all values selected
-if (this.id == 'all') {
-    $('#cms-images > img').show();
-} else {
-    // take id from selected button and create var with class value same as id, hide those elements that don't have that class
-    var $el = $('.' + this.id).show();
-    $('#cms-images > img').not($el).hide();
-}
-// remove active class from all buttons
-$btns.removeClass('active');
-// add active class to selected button
-$(this).addClass('active');
-})
-var imageurl, imagealt;
-
-// SDK
-var sdk = new window.sfdc.BlockSDK();
-
-$("img").click(function(){
-  var imagealt = $(this).attr("alt");
-  var imageurl = $(this).attr("src");
-  // set input from image-link as href of selected image
-  var link, height, width;
-  var link = $('#image-link').val();
-  var height= $('#slider-image-height').val();
-  var width= $('#slider-image-width').val();
-
-//  var link = "www.google.com";
-  console.log("Alt Text: " + imagealt + "|| Image Source: " + imageurl);
-  console.log("height" + height + "|| width " + width);
-//  sdk.setContent(imagealt);
-//  sdk.setSuperContent('This is super content: ' + imageurl);
-  sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="https://experts-cb-sdk-wordpress.herokuapp.com/' + imageurl + '" /></a>');
-});
-
-    </script>
 </body>
 
 </html>
