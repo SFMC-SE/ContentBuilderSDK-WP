@@ -25,12 +25,12 @@ $("img").click(function() {
 	$(this).attr('id', 'selected-image');
 })
 
-//function blockSettings () {
-//	document.getElementById('image-link').value = link;
-//	document.getElementById('slider-image-width').value = width;
-//	document.getElementById('slider-image-height').value = height;
-//	document.getElementById('selected-image').src = imageurl;
-//}
+function blockSettings () {
+	document.getElementById('image-link').value = link;
+	document.getElementById('slider-image-width').value = width;
+	document.getElementById('slider-image-height').value = height;
+	document.getElementById('selected-image').src = imageurl;
+}
 
 function sliderValues () {
 	document.getElementById('slider-image-width-val').innerHTML = document.getElementById('slider-image-width').value;
@@ -56,7 +56,7 @@ sdk.getData(function (data) {
 	width = data.width || 300;
 	height = data.height || 300;
 	imageurl = data.imageurl || '';
-//	blockSettings();
+	blockSettings();
 	sliderValues();
 	setImage();
 });
@@ -80,23 +80,35 @@ $(this).addClass('active');
 
 // EVENT LISTENERS
 
-document.getElementById('slider-image-width').addEventListener("input", function () {
-	debounce(setImage, 500)();
-	sliderValues();
+document.getElementById('block-container').addEventListener("input", function () {
+	debounce(paintMap, 500)();
+	paintSliderValues();
 });
+document.getElementById('block-container').addEventListener("blur", function () {
+	debounce(paintMap, 500)();
+	paintSliderValues();
+});
+document.getElementById('block-container').addEventListener("click", function () {
+	debounce(paintMap, 500)();
+	paintSliderValues();
+});
+//document.getElementById('slider-image-width').addEventListener("input", function () {
+//	debounce(setImage, 500)();
+//	sliderValues();
+//});
 
-document.getElementById('slider-image-height').addEventListener("input", function () {
-	debounce(setImage, 500)();
-	sliderValues();
-});
+//document.getElementById('slider-image-height').addEventListener("input", function () {
+//	debounce(setImage, 500)();
+//	sliderValues();
+//});
 
-document.getElementById('image-link').addEventListener("blur", function () {
-	debounce(setImage, 500)();
-});
+//document.getElementById('image-link').addEventListener("blur", function () {
+//	debounce(setImage, 500)();
+//});
 
-document.getElementById('cms-images').addEventListener("click", function () {
-	debounce(setImage, 500)();
-});
+//document.getElementById('cms-images').addEventListener("click", function () {
+//	debounce(setImage, 500)();
+//});
 
 
 //old code
