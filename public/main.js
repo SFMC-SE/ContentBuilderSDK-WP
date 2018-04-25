@@ -85,6 +85,16 @@ document.getElementById('block-container').addEventListener("input", function ()
 	sliderValues();
 });
 
+document.getElementById('block-container').addEventListener("click", function () {
+	debounce(setImage, 500)();
+	sliderValues();
+});
+
+document.getElementById('block-container').addEventListener("blur", function () {
+	debounce(setImage, 500)();
+	sliderValues();
+});
+
 //document.getElementById('slider-image-width').addEventListener("input", function () {
 //	debounce(setImage, 500)();
 //	sliderValues();
