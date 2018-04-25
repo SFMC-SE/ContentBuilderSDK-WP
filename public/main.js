@@ -37,7 +37,6 @@ function blockSettings () {
 function sliderValues () {
 	document.getElementById('slider-image-width-val').innerHTML = document.getElementById('slider-image-width').value;
 	document.getElementById('slider-image-height-val').innerHTML = document.getElementById('slider-image-height').value;
-	document.getElementById('selected-image').src = imageurl;
 }
 
 function setImage() {
