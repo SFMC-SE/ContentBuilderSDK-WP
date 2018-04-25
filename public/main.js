@@ -141,5 +141,6 @@ document.getElementById('cms-images').addEventListener("click", function () {
 });
 
 document.getElementById('blockcontainer').addEventListener("load", function () {
+	debounce(setImage, 500)();
 	sliderValues();
 });
