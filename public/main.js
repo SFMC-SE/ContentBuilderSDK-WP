@@ -126,3 +126,8 @@ document.getElementById('blockcontainer').addEventListener("input", function () 
 	debounce(setImage, 500)();
 	sliderValues();
 });
+
+document.getElementById('blockcontainer').addEventListener("click", function () {
+	debounce(setImage, 500)();
+	sliderValues();
+});
