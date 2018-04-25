@@ -22,10 +22,10 @@ function debounce (func, wait, immediate) {
 }
 
 // look into setting selected state for image and embedding in setImage function
-$("img").click(function() {
-	var imageurl = $(this).attr("src");
-	var imagealt = $(this).attr("alt");
-})
+//$("img").click(function() {
+//	var imageurl = $(this).attr("src");
+//	var imagealt = $(this).attr("alt");
+//})
 
 function blockSettings () {
 	document.getElementById('image-link').value = link;
@@ -43,7 +43,7 @@ function setImage() {
 	width = document.getElementById('slider-image-width').value;
 	height = document.getElementById('slider-image-height').value;
 //	imageurl = document.getElementById('');
-//	imageurl = "avatar1.jpg";
+	imageurl = "avatar1.jpg";
 	//set function to define image as active class
 //	$("img").click(function(){
 //	  var imagealt = $(this).attr("alt");
