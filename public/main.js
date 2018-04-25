@@ -97,11 +97,9 @@ document.getElementById('image-link').addEventListener("blur", function () {
 document.getElementById('cms-images').addEventListener("click", function () {
 	debounce(setImage, 500)();
 });
-
-document.getElementById('blockcontainer').addEventListener("change", function () {
+document.onload = function(){
 	sliderValues();
-});
-
+};
 
 //old code
 
