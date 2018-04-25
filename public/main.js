@@ -140,7 +140,6 @@ document.getElementById('cms-images').addEventListener("click", function () {
 	debounce(setImage, 500)();
 });
 
-document.getElementById('blockcontainer').addEventListener("load", function () {
-	debounce(setImage, 500)();
+document.getElementById('blockcontainer').addEventListener("change", function () {
 	sliderValues();
 });
