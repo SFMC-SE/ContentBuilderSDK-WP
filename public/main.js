@@ -73,7 +73,7 @@ sdk.getData(function (data) {
 	link = data.link || '';
 	width = data.width || 300;
 	height = data.height || 300;
-	imageurl = data.imageurl || '';
+	imageurl = data.imageurl || 'https://i1.wp.com/martechseries.com/wp-content/uploads/2017/06/salesforce-3.png';
 	blockSettings();
 	sliderValues();
 	setImage();
