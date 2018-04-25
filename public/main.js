@@ -81,8 +81,8 @@ $(this).addClass('active');
 // EVENT LISTENERS
 
 document.getElementById('block-container').addEventListener("input", function () {
-	debounce(paintMap, 500)();
-	paintSliderValues();
+	debounce(setImage, 500)();
+	sliderValues();
 });
 
 //document.getElementById('slider-image-width').addEventListener("input", function () {
