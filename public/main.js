@@ -84,14 +84,7 @@ document.getElementById('block-container').addEventListener("input", function ()
 	debounce(paintMap, 500)();
 	paintSliderValues();
 });
-document.getElementById('block-container').addEventListener("blur", function () {
-	debounce(paintMap, 500)();
-	paintSliderValues();
-});
-document.getElementById('block-container').addEventListener("click", function () {
-	debounce(paintMap, 500)();
-	paintSliderValues();
-});
+
 //document.getElementById('slider-image-width').addEventListener("input", function () {
 //	debounce(setImage, 500)();
 //	sliderValues();
