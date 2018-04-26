@@ -1,8 +1,8 @@
 // append an id to the selected image and remove id from any other selected images
-//$("#cms-images").click(function() {
-//	$("img").removeAttr("id");
-//	$(this).attr('id', 'selected-image');
-//})
+$("#cms-images").click(function() {
+	$("img").removeAttr("id");
+	$(this).attr('id', 'selected-image');
+})
 
 // IMAGE LOAD
 // get image data from data.json
@@ -111,8 +111,6 @@ document.getElementById('image-link').addEventListener("blur", function () {
 document.getElementById('cms-images').addEventListener("click", function () {
 	debounce(setImage, 500)();
 	sliderValues();
-	$("img").removeAttr("id");
-	$(this).attr('id', 'selected-image');
 });
 
 // BUTTONS
