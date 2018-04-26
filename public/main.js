@@ -1,8 +1,8 @@
 // append an id to the selected image and remove id from any other selected images
-$("img").click(function() {
-	$("img").removeAttr("id");
-	$(this).attr('id', 'selected-image');
-})
+//$("#cms-images").click(function() {
+//	$("img").removeAttr("id");
+//	$(this).attr('id', 'selected-image');
+//})
 
 // IMAGE LOAD
 // get image data from data.json
@@ -85,7 +85,7 @@ sdk.getData(function (data) {
 	link = data.link || '';
 	width = data.width || 300;
 	height = data.height || 300;
-	imageurl = data.imageurl || 'https://experts-cb-sdk-wordpress.herokuapp.com/avatar1.jpg';
+	imageurl = data.imageurl || '';
 	blockSettings();
 	sliderValues();
 	setImage();
@@ -111,6 +111,8 @@ document.getElementById('image-link').addEventListener("blur", function () {
 document.getElementById('cms-images').addEventListener("click", function () {
 	debounce(setImage, 500)();
 	sliderValues();
+	$("img").removeAttr("id");
+	$(this).attr('id', 'selected-image');
 });
 
 // BUTTONS
