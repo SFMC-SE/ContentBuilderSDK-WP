@@ -27,6 +27,12 @@ $btns.removeClass('active');
 $(this).addClass('active');
 })
 
+// append an id to the selected image and remove id from any other selected images
+$("img").click(function() {
+	$("img").removeAttr("id");
+	$(this).attr('id', 'selected-image');
+})
+
 // SDK
 var sdk = new window.sfdc.BlockSDK();
 
@@ -46,12 +52,6 @@ function debounce (func, wait, immediate) {
 		if (callNow) func.apply(context, args);
 	};
 }
-
-// append an id to the selected image and remove id from any other selected images
-$("img").click(function() {
-	$("img").removeAttr("id");
-	$(this).attr('id', 'selected-image');
-})
 
 function blockSettings () {
 	document.getElementById('image-link').value = link;
@@ -83,7 +83,7 @@ sdk.getData(function (data) {
 	link = data.link || '';
 	width = data.width || 300;
 	height = data.height || 300;
-	imageurl = data.imageurl || '';
+	imageurl = data.imageurl || 'https://experts-cb-sdk-wordpress.herokuapp.com/avatar1.jpg';
 	blockSettings();
 	sliderValues();
 	setImage();
