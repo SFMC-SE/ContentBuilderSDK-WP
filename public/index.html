@@ -95,36 +95,5 @@
     <script src="main.js"></script>
 <!--  	<script src="main.js"></script> -->
 </body>
-<script>
-    // load images from json data set
-    // get image data from data.json
-    $.getJSON("images.json", function(data) {
-        var returnedImages = '';
-        // loop through each value to dynamically build html from json data values and load to tiles var
-        $.each(data, function(key, value) {
-            returnedImages += '<img class = "slds-p-around_xxx-small ' + value.tag + '" border="0" src="' + value.link + '" alt="' + value.name + '" width="100" height="100">';
-        });
-        // append html generated to cms-images div
-        $('#cms-images').html(returnedImages);
-    });
-
-    // BUTTONS
-    // filter results based on buttons selected
-    var $btns = $('.slds-button_neutral').click(function() {
-    // if all is selected show all elements in main div - by default the page loads with all values selected
-    if (this.id == 'all') {
-        $('#cms-images > img').show();
-    } else {
-        // take id from selected button and create var with class value same as id, hide those elements that don't have that class
-        var $el = $('.' + this.id).show();
-        $('#cms-images > img').not($el).hide();
-    }
-    // remove active class from all buttons
-    $btns.removeClass('active');
-    // add active class to selected button
-    $(this).addClass('active');
-    })
-
-</script>
 
 </html>
