@@ -1,0 +1,32 @@
+[{
+		"name": "Avatar1",
+		"image": "avatar1.jpg",
+		"link": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar1.jpg",
+        "tag": "all one"
+	},{
+  		"name": "Avatar2",
+  		"image": "avatar2.jpg",
+  		"link": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar2.jpg",
+          "tag": "all two"
+  	},{
+    		"name": "Avatar3",
+    		"image": "avatar3.jpg",
+    		"link": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar3.jpg",
+            "tag": "all three"
+    	},{
+      		"name": "Avatar4",
+      		"image": "avatar1.jpg",
+      		"link": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar1.jpg",
+              "tag": "all one"
+      	},{
+        		"name": "Avatar5",
+        		"image": "avatar2.jpg",
+        		"link": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar2.jpg",
+                "tag": "all two"
+        	},{
+          		"name": "Avatar6",
+          		"image": "avatar3.jpg",
+          		"link": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar3.jpg",
+                  "tag": "all three"
+          	}
+]

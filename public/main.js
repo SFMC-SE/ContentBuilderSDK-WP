@@ -85,20 +85,20 @@ document.getElementById('cms-images').addEventListener("click", function () {
 
 // BUTTONS
 // filter results based on buttons selected
-var $btns = $('.slds-button_neutral').click(function() {
+//var $btns = $('.slds-button_neutral').click(function() {
 // if all is selected show all elements in main div - by default the page loads with all values selected
-if (this.id == 'all') {
-    $('#cms-images > img').show();
-} else {
+//if (this.id == 'all') {
+//    $('#cms-images > img').show();
+//} else {
     // take id from selected button and create var with class value same as id, hide those elements that don't have that class
-    var $el = $('.' + this.id).show();
-    $('#cms-images > img').not($el).hide();
-}
+//    var $el = $('.' + this.id).show();
+//    $('#cms-images > img').not($el).hide();
+//}
 // remove active class from all buttons
-$btns.removeClass('active');
+//$btns.removeClass('active');
 // add active class to selected button
-$(this).addClass('active');
-})
+//$(this).addClass('active');
+//})
 
 
 
