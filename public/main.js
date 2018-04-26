@@ -12,7 +12,7 @@ $.getJSON("images.json", function(data) {
 });
 
 // append an id to the selected image and remove id from any other selected images
-$('img').click(function() {
+$('.slds-p-around_xxx-small').click(function() {
 	$('img').removeAttr('id');
 	$(this).attr('id', 'selected-image');
 })
