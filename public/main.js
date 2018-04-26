@@ -12,8 +12,8 @@ $.getJSON("images.json", function(data) {
 });
 
 // append an id to the selected image and remove id from any other selected images
-$("#cms-images").children('img')click(function() {
-	$("img").removeAttr("id");
+$('#cms-images').children('img')click(function() {
+	$('img').removeAttr('id');
 	$(this).attr('id', 'selected-image');
 })
 
