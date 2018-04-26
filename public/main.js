@@ -1,10 +1,16 @@
+// append an id to the selected image and remove id from any other selected images
+$("img").click(function() {
+	$("img").removeAttr("id");
+	$(this).attr('id', 'selected-image');
+})
+
 // IMAGE LOAD
 // get image data from data.json
 $.getJSON("images.json", function(data) {
 		var returnedImages = '';
 		// loop through each value to dynamically build html from json data values and load to tiles var
 		$.each(data, function(key, value) {
-				returnedImages += '<img class = "slds-p-around_xxx-small ' + value.tag + '" border="0" src="' + value.link + '" alt="' + value.name + '" width="100" height="100">';
+				returnedImages += '<img class = "slds-p-around_xxx-small ' + value.tag + '" src="' + value.link + '" alt="' + value.name + '" width="100" height="100">';
 		});
 		// append html generated to cms-images div
 		$('#cms-images').html(returnedImages);
@@ -27,11 +33,7 @@ $btns.removeClass('active');
 $(this).addClass('active');
 })
 
-// append an id to the selected image and remove id from any other selected images
-$("img").click(function() {
-	$("img").removeAttr("id");
-	$(this).attr('id', 'selected-image');
-})
+
 
 // SDK
 var sdk = new window.sfdc.BlockSDK();
