@@ -12,10 +12,10 @@ $.getJSON("images.json", function(data) {
 });
 
 // append an id to the selected image and remove id from any other selected images
-$('.slds-p-around_xxx-small').click(function() {
-	$('img').removeAttr('id');
-	$(this).attr('id', 'selected-image');
-})
+//$('.slds-p-around_xxx-small').click(function() {
+//	$('img').removeAttr('id');
+//	$(this).attr('id', 'selected-image');
+//})
 
 // BUTTONS
 // filter results based on buttons selected
@@ -112,6 +112,10 @@ document.getElementById('image-link').addEventListener("blur", function () {
 document.getElementById('cms-images').addEventListener("click", function () {
 	debounce(setImage, 500)();
 	sliderValues();
+});
+
+document.getElementsByClassName("slds-p-around_xxx-small").addEventListener("click", function () {
+	setAttribute("id", "selected-image");
 });
 
 // BUTTONS
