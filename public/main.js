@@ -1,8 +1,3 @@
-// append an id to the selected image and remove id from any other selected images
-$("#cms-images").children('img')click(function() {
-	$("img").removeAttr("id");
-	$(this).attr('id', 'selected-image');
-})
 
 // IMAGE LOAD
 // get image data from data.json
@@ -15,6 +10,12 @@ $.getJSON("images.json", function(data) {
 		// append html generated to cms-images div
 		$('#cms-images').html(returnedImages);
 });
+
+// append an id to the selected image and remove id from any other selected images
+$("#cms-images").children('img')click(function() {
+	$("img").removeAttr("id");
+	$(this).attr('id', 'selected-image');
+})
 
 // BUTTONS
 // filter results based on buttons selected
