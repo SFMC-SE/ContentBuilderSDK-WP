@@ -11,7 +11,7 @@
 //		$('#cms-images').html(returnedImages);
 //});
 
-var debounce = _.debounce(setImage, 300);
+//var debounce = _.debounce(setImage(), 500);
 
 // SDK
 var sdk = new window.sfdc.BlockSDK();
@@ -27,6 +27,7 @@ function blockSettings () {
 function sliderValues () {
 	document.getElementById('slider-image-width-val').innerHTML = document.getElementById('slider-image-width').value;
 	document.getElementById('slider-image-height-val').innerHTML = document.getElementById('slider-image-height').value;
+//    debounce();
 }
 
 function setImage() {
@@ -47,7 +48,7 @@ sdk.getData(function (data) {
 	width = data.width || 300;
 	height = data.height || 300;
 	imageurl = data.imageurl || '';
-  blockSettings();
+    blockSettings();
 	sliderValues();
 });
 
@@ -74,10 +75,12 @@ $(this).addClass('active');
 // set image url after user click
 $("#cms-images").children("img").click(function() {
     imageurl = $(this).attr('src');
-    debounce();
+    setImage();
+//    debounce();
 })
 
 $("#slider-image-width, #slider-image-height, #image-link").change(function() {
-    debounce();
+//    debounce();
     sliderValues();
+    setImage();
 })
