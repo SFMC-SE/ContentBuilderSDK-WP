@@ -1,21 +1,22 @@
 
 // IMAGE LOAD
 // get image data from data.json
-$.getJSON("images.json", function(data) {
-		var returnedImages = '';
+//$.getJSON("images.json", function(data) {
+//		var returnedImages = '';
 		// loop through each value to dynamically build html from json data values and load to tiles var
-		$.each(data, function(key, value) {
-				returnedImages += '<img class = "slds-p-around_xxx-small ' + value.tag + '" src="' + value.link + '" alt="' + value.name + '" width="100" height="100">';
-		});
+//		$.each(data, function(key, value) {
+//				returnedImages += '<img class="slds-p-around_xxx-small ' + value.tag + '" src="' + value.link + '" alt="' + value.name + '" width="100" height="100">';
+ //		});
 		// append html generated to cms-images div
-		$('#cms-images').html(returnedImages);
-});
+//		$('#cms-images').html(returnedImages);
+//});
 
 // append an id to the selected image and remove id from any other selected images
 //$('.slds-p-around_xxx-small').click(function() {
-//	$('img').removeAttr('id');
-//	$(this).attr('id', 'selected-image');
-//})
+$('img').click(function() {
+	$('img').removeAttr('id');
+	$(this).attr('id', 'selected-image');
+})
 
 // BUTTONS
 // filter results based on buttons selected
@@ -114,9 +115,6 @@ document.getElementById('cms-images').addEventListener("click", function () {
 	sliderValues();
 });
 
-document.getElementsByClassName("slds-p-around_xxx-small").addEventListener("click", function () {
-	setAttribute("id", "selected-image");
-});
 
 // BUTTONS
 // filter results based on buttons selected
