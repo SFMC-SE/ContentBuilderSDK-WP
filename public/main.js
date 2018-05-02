@@ -1,10 +1,3 @@
-//var underscore = require('underscore');
-
-//var SDK = require('blocksdk');
-//var sdk = new SDK();
-
-
-
 // IMAGE LOAD
 
 // get image data from data.json
@@ -21,6 +14,7 @@
 //var debounce = _.debounce(setImage(), 500);
 
 // SDK
+
 var sdk = new window.sfdc.BlockSDK();
 
 var link, width, height, imageurl;
@@ -41,21 +35,21 @@ function setImage() {
 	link = document.getElementById('image-link').value;
 	width = document.getElementById('slider-image-width').value;
 	height = document.getElementById('slider-image-height').value;
-		sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a>');
-		sdk.setData({
-			link: link,
-			width: width,
-			height: height,
-			imageurl: imageurl
-		});
+	sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a>');
+	sdk.setData({
+	link: link,
+	width: width,
+	height: height,
+	imageurl: imageurl
+	});
 }
 
 sdk.getData(function (data) {
-	link = data.link || '';
+	link = data.link || 'http://salesforce.com';
 	width = data.width || 300;
 	height = data.height || 300;
-	imageurl = data.imageurl || '';
-  blockSettings();
+	imageurl = data.imageurl || 'https://image.freepik.com/free-icon/wordpress-logo_318-33553.jpg';
+    blockSettings();
 	sliderValues();
 });
 
@@ -84,6 +78,7 @@ $("#cms-images").children("img").click(function() {
     imageurl = $(this).attr('src');
     setImage();
 //    debounce();
+    console.log(imageurl)
 })
 
 $("#slider-image-width, #slider-image-height, #image-link").change(function() {
