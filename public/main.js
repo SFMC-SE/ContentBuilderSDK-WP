@@ -1,3 +1,10 @@
+//var underscore = require('underscore');
+
+//var SDK = require('blocksdk');
+//var sdk = new SDK();
+
+
+
 // IMAGE LOAD
 
 // get image data from data.json
@@ -11,7 +18,7 @@
 //		$('#cms-images').html(returnedImages);
 //});
 
-//var debounce = _.debounce(setImage(), 500);
+var debounce = _.debounce(setImage(), 500);
 
 // SDK
 var sdk = new window.sfdc.BlockSDK();
@@ -48,8 +55,9 @@ sdk.getData(function (data) {
 	width = data.width || 300;
 	height = data.height || 300;
 	imageurl = data.imageurl || '';
-    blockSettings();
+  blockSettings();
 	sliderValues();
+	setImage();
 });
 
 // BUTTONS
@@ -80,7 +88,7 @@ $("#cms-images").children("img").click(function() {
 })
 
 $("#slider-image-width, #slider-image-height, #image-link").change(function() {
-//    debounce();
+    debounce();
     sliderValues();
-    setImage();
+//    setImage();
 })

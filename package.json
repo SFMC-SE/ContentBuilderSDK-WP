@@ -5,8 +5,9 @@
   "author": "Tyler Vickers & Aaron Cates",
   "main": "index.js",
   "dependencies": {
-    "express": "4.13.3",
     "@salesforce-ux/design-system": "^2.5.2",
-    "blocksdk": "^1.0.0"
+    "blocksdk": "^1.0.0",
+    "express": "4.13.3",
+    "underscore": "^1.9.0"
   }
 }
