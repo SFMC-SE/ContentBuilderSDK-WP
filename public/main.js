@@ -11,7 +11,22 @@
 //		$('#cms-images').html(returnedImages);
 //});
 
-var debounce = _.debounce(setImage(), 500);
+//var debounce = _.debounce(setImage(), 500);
+
+function debounce (func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+}
 
 // SDK
 
@@ -45,12 +60,13 @@ function setImage() {
 }
 
 sdk.getData(function (data) {
-	link = data.link || '';
+	link = data.link || 'http://salesforce.com';
 	width = data.width || 300;
 	height = data.height || 300;
 	imageurl = data.imageurl || 'https://image.freepik.com/free-icon/wordpress-logo_318-33553.jpg';
     blockSettings();
 	sliderValues();
+    setImage();
 });
 
 // BUTTONS
@@ -82,7 +98,8 @@ $("#cms-images").children("img").click(function() {
 })
 
 $("#slider-image-width, #slider-image-height, #image-link").change(function() {
-    debounce();
+//    debounce();
+	debounce(setImage, 500)();
     sliderValues();
     setImage();
 })
