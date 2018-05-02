@@ -89,17 +89,17 @@ $(this).addClass('active');
 
 // EVENT LISTENERS
 
+
 // set image url after user click
 $("#cms-images").children("img").click(function() {
     imageurl = $(this).attr('src');
     setImage();
 //    debounce();
-    console.log(imageurl)
 })
 
 $("#slider-image-width, #slider-image-height, #image-link").change(function() {
 //    debounce();
-	debounce(setImage, 500)();
+//	debounce(setImage, 500)();
     sliderValues();
     setImage();
 })
