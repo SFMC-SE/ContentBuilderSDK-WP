@@ -50,7 +50,7 @@ function setImage() {
 	link = document.getElementById('image-link').value;
 	width = document.getElementById('slider-image-width').value;
 	height = document.getElementById('slider-image-height').value;
-    sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a>');
+    sdk.setContent('<a href="' + link + '"><img align = "center" height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a>');
 	sdk.setData({
 	link: link,
 	width: width,
