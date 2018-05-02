@@ -18,7 +18,7 @@
 //		$('#cms-images').html(returnedImages);
 //});
 
-var debounce = _.debounce(setImage(), 500);
+//var debounce = _.debounce(setImage(), 500);
 
 // SDK
 var sdk = new window.sfdc.BlockSDK();
@@ -57,7 +57,6 @@ sdk.getData(function (data) {
 	imageurl = data.imageurl || '';
   blockSettings();
 	sliderValues();
-	setImage();
 });
 
 // BUTTONS
@@ -88,7 +87,7 @@ $("#cms-images").children("img").click(function() {
 })
 
 $("#slider-image-width, #slider-image-height, #image-link").change(function() {
-    debounce();
+//    debounce();
     sliderValues();
-//    setImage();
+    setImage();
 })
