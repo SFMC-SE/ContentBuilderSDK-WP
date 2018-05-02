@@ -32,7 +32,22 @@ function debounce (func, wait, immediate) {
 
 var sdk = new window.sfdc.BlockSDK();
 
-var link, width, height, imageurl;
+var link, width, height, imageurl, val;
+
+//function imageAlignment(form, name) {
+//    var val;
+    // get list of radio buttons with specified name
+//    var radios = form.elements[name];
+    
+    // loop through list of radio buttons
+//    for (var i=0, len=radios.length; i<len; i++) {
+//        if ( radios[i].checked ) { // radio checked?
+//            val = radios[i].value; // if so, hold its value in val
+//            break; // and break out of for loop
+  //      }
+//    }
+//    return val; // return value of checked radio or undefined if none checked
+//}
 
 function blockSettings () {
 	document.getElementById('image-link').value = link;
@@ -104,3 +119,12 @@ $("#slider-image-width, #slider-image-height, #image-link").change(function() {
     sliderValues();
     setImage();
 })
+
+//document.getElementById('image-alignment').onclick = function() {
+    // this (keyword) refers to form to which onsubmit attached
+    // 'ship' is name of radio button group
+//    var val = getRadioVal(this, 'alignment');
+    // display value obtained
+//    alert(val);
+    // more code here ...
+//}
