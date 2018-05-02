@@ -60,10 +60,10 @@ function setImage() {
 }
 
 sdk.getData(function (data) {
-	link = data.link || 'http://salesforce.com';
+	link = data.link || '';
 	width = data.width || 300;
 	height = data.height || 300;
-	imageurl = data.imageurl || 'https://image.freepik.com/free-icon/wordpress-logo_318-33553.jpg';
+	imageurl = data.imageurl || '';
     blockSettings();
 	sliderValues();
     setImage();
