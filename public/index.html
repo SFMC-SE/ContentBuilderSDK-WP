@@ -42,6 +42,7 @@
       </div>
     </div>
     <!-- /image link -->
+    </br>
     <!-- image width -->
     <div class="slds-form-element">
       <label class="slds-form-element__label" for="slider-image-width">
@@ -51,12 +52,13 @@
       </label>
       <div class="slds-form-element__control">
         <div class="slds-slider">
-          <input type="range" id="slider-image-width" class="slds-slider__range" value="200" min="100" max="800" />
-          <span class="slds-slider__value" id="slider-image-width-val" aria-hidden="true">200</span>
+          <input type="range" id="slider-image-width" class="slds-slider__range" value="300" min="100" max="800" />
+          <span class="slds-slider__value" id="slider-image-width-val" aria-hidden="true">300</span>
         </div>
       </div>
     </div>
     <!-- /image width -->
+    </br>
     <!-- image height -->
     <div class="slds-form-element">
       <label class="slds-form-element__label" for="slider-image-height">
@@ -66,12 +68,42 @@
       </label>
       <div class="slds-form-element__control">
         <div class="slds-slider">
-          <input type="range" id="slider-image-height" class="slds-slider__range" value="200" min="100" max="800" />
-          <span class="slds-slider__value" id="slider-image-height-val" aria-hidden="true">200</span>
+          <input type="range" id="slider-image-height" class="slds-slider__range" value="300" min="100" max="800" />
+          <span class="slds-slider__value" id="slider-image-height-val" aria-hidden="true">300</span>
         </div>
       </div>
     </div>
     <!-- /image height -->
+</br>
+<div class="slds-grid slds-gutters">
+  <div class="slds-col slds-size_1-of-3">
+    <!-- scale to fit -->
+    <div>
+        <form id="image-scale">
+    <fieldset class="slds-form-element">
+      <legend class="slds-form-element__legend slds-form-element__label">Scale to Fit</legend>
+      <div class="slds-form-element__control">
+        <div class="slds-radio_button-group">
+          <span class="slds-button slds-radio_button">
+            <input type="radio" name="alignment" id="scale-yes" value="100%" />
+            <label class="slds-radio_button__label" for="image-left">
+              <span class="slds-radio_faux">Yes</span>
+            </label>
+          </span>
+          <span class="slds-button slds-radio_button">
+            <input type="radio" name="alignment" id="scale-no" value="" />
+            <label class="slds-radio_button__label" for="image-center">
+              <span class="slds-radio_faux">No</span>
+            </label>
+          </span>
+        </div>
+      </div>
+    </fieldset>
+            </form>
+    </div>
+    <!-- /scale to fit -->
+  </div>
+  <div class="slds-col slds-size_2-of-3">
     <!-- /image alignment -->
 <div>
     <form id="image-alignment">
@@ -103,6 +135,12 @@
         </form>
 </div>
     <!-- /image alignment -->
+  </div>
+</div>
+
+</br>
+
+
     <!-- image filters -->
     <div id="cms-filter-buttons" class="slds-button-group slds-p-around_x-large" role="group">
       <button id="all" class="slds-button_neutral filter-button active">All</button>
