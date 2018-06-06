@@ -61,7 +61,7 @@ sdk.getData(function (data) {
 	link = data.link || '';
 	width = data.width || 300;
 	height = data.height || 300;
-	imageurl = data.imageurl || '';
+	imageurl = data.imageurl || 'https://experts-cb-sdk-wordpress.herokuapp.com/wordpress-logo.jpg';
     blockSettings();
 	sliderValues();
     setImage();
