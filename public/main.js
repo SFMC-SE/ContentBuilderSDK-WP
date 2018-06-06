@@ -11,23 +11,6 @@
 //		$('#cms-images').html(returnedImages);
 //});
 
-//var debounce = _.debounce(setImage(), 500);
-
-function debounce (func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-}
-
 // SDK
 
 var sdk = new window.sfdc.BlockSDK();
@@ -38,7 +21,7 @@ var link, width, height, imageurl, val;
 //    var val;
     // get list of radio buttons with specified name
 //    var radios = form.elements[name];
-    
+
     // loop through list of radio buttons
 //    for (var i=0, len=radios.length; i<len; i++) {
 //        if ( radios[i].checked ) { // radio checked?
@@ -58,7 +41,6 @@ function blockSettings () {
 function sliderValues () {
 	document.getElementById('slider-image-width-val').innerHTML = document.getElementById('slider-image-width').value;
 	document.getElementById('slider-image-height-val').innerHTML = document.getElementById('slider-image-height').value;
-//    debounce();
 }
 
 function setImage() {
@@ -110,21 +92,9 @@ $(this).addClass('active');
 $("#cms-images").children("img").click(function() {
     imageurl = $(this).attr('src');
     setImage();
-//    debounce();
 })
 
 $("#slider-image-width, #slider-image-height, #image-link").change(function() {
-//    debounce();
-//	debounce(setImage, 500)();
     sliderValues();
     setImage();
 })
-
-//document.getElementById('image-alignment').onclick = function() {
-    // this (keyword) refers to form to which onsubmit attached
-    // 'ship' is name of radio button group
-//    var val = getRadioVal(this, 'alignment');
-    // display value obtained
-//    alert(val);
-    // more code here ...
-//}
