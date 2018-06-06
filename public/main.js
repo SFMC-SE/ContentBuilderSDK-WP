@@ -15,27 +15,14 @@
 
 var sdk = new window.sfdc.BlockSDK();
 
-var link, width, height, imageurl, val;
-
-//function imageAlignment(form, name) {
-//    var val;
-    // get list of radio buttons with specified name
-//    var radios = form.elements[name];
-
-    // loop through list of radio buttons
-//    for (var i=0, len=radios.length; i<len; i++) {
-//        if ( radios[i].checked ) { // radio checked?
-//            val = radios[i].value; // if so, hold its value in val
-//            break; // and break out of for loop
-  //      }
-//    }
-//    return val; // return value of checked radio or undefined if none checked
-//}
+var link, width, height, imageurl, alignment, scale;
 
 function blockSettings () {
 	document.getElementById('image-link').value = link;
 	document.getElementById('slider-image-width').value = width;
 	document.getElementById('slider-image-height').value = height;
+//	document.querySelector('input[name="alignment"]:checked').value = alignment;
+//	$('input[name="alignment"]:checked').val() = alignment;
 }
 
 function sliderValues () {
@@ -47,13 +34,20 @@ function setImage() {
 	link = document.getElementById('image-link').value;
 	width = document.getElementById('slider-image-width').value;
 	height = document.getElementById('slider-image-height').value;
-//    sdk.setContent('<a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a>');
-    sdk.setContent('<div style="display: flex; justify-content: center;"> <a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a></div>');
+	alignment = document.querySelector('input[name="alignment"]:checked').value;
+	scale = document.querySelector('input[name="scale"]:checked').value;
+	if (scale === "yes") {
+  sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img style="max-width: 100%" src="' + imageurl + '" /></a></div>');
+} else {
+	sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a></div>');
+}
 	sdk.setData({
 	link: link,
 	width: width,
 	height: height,
-	imageurl: imageurl
+	imageurl: imageurl,
+	alignment: alignment,
+	scale: scale
 	});
 }
 
@@ -62,10 +56,13 @@ sdk.getData(function (data) {
 	width = data.width || 300;
 	height = data.height || 300;
 	imageurl = data.imageurl || 'https://experts-cb-sdk-wordpress.herokuapp.com/wordpress-logo.jpg';
+	alignment = data.alignment || 'center';
+	scale = data.scale || '';
     blockSettings();
-	sliderValues();
+		sliderValues();
     setImage();
 });
+
 
 // BUTTONS
 
@@ -87,6 +84,14 @@ $(this).addClass('active');
 
 // EVENT LISTENERS
 
+//disable sliderValues
+//#slider-image-width
+//#slider-image-height
+//$("#image-scale").change(function() {
+//	if (scale === "yes") {
+//		$("#slider-image-height").add('disabled="yes"');
+//	}
+//})
 
 // set image url after user click
 $("#cms-images").children("img").click(function() {
@@ -94,7 +99,7 @@ $("#cms-images").children("img").click(function() {
     setImage();
 })
 
-$("#slider-image-width, #slider-image-height, #image-link").change(function() {
+$("#slider-image-width, #slider-image-height, #image-link, #image-alignment, #image-scale").change(function() {
     sliderValues();
     setImage();
 })
