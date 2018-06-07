@@ -1,6 +1,9 @@
 // IMAGE LOAD
 
 // get image data from data.json
+
+console.log(wpEndPoint); //set on the page via NODE
+
 $.getJSON("images.json", function(data) {
 		var returnedImages = '';
 		// loop through each value to dynamically build html from json data values and build image elements

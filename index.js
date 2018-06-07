@@ -14,5 +14,8 @@ app.listen(app.get('port'), function() {
 });
 
 app.get('/', function(req, res){
-	res.render('pages/index');
+	var apiurl = process.env.wpmediaendpoint || "https://wordpress.mcexperts.ninja/wp-json/wp/v2/media";
+	res.render('pages/index',{
+		"apiurl" : apiurl
+	});
 }); 
