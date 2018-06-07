@@ -6,7 +6,7 @@
 		// loop through each value to dynamically build html from json data values and build image elements
 //		$.each(data, function(key, value) {
 //				returnedImages += '<img class="slds-p-around_xxx-small ' + value.tag + '" src="' + value.location + '" alt="' + value.name + '" width="100" height="100">';
-//		});
+//		});/
 		// append html generated to cms-images div
 //		$('#cms-images').html(returnedImages);
 //});
@@ -21,8 +21,29 @@ function blockSettings () {
 	document.getElementById('image-link').value = link;
 	document.getElementById('slider-image-width').value = width;
 	document.getElementById('slider-image-height').value = height;
-//	document.querySelector('input[name="alignment"]:checked').value = alignment;
-//	$('input[name="alignment"]:checked').val() = alignment;
+	if (scale === "yes") {
+		document.getElementById('scale-yes').setAttribute("checked", "checked");
+		document.getElementById('#slider-image-height').setAttribute("disabled", "");
+		document.getElementById('#slider-image-width').setAttribute("disabled", "");
+	} else {
+		document.getElementById('scale-yes').removeAttribute("checked");
+		document.getElementById('scale-no').setAttribute("checked", "checked");
+		document.getElementById('slider-image-height').removeAttribute("disabled");
+		document.getElementById('slider-image-width').removeAttribute("disabled");
+	};
+	if (alignment === "left") {
+		document.getElementById('image-left').setAttribute("checked", "checked");
+		document.getElementById('image-center').removeAttribute("checked");
+		document.getElementById('image-right').removeAttribute("checked");
+	} else if (alignnment === "center") {
+		document.getElementById('image-left').removeAttribute("checked");
+		document.getElementById('image-center').setAttribute("checked", "checked");
+		document.getElementById('image-right').removeAttribute("checked");
+	} else {
+		document.getElementById('image-left').removeAttribute("checked");
+		document.getElementById('image-center').removeAttribute("checked");
+		document.getElementById('image-right').setAttribute("checked", "checked");
+	}
 }
 
 function sliderValues () {
@@ -56,8 +77,8 @@ sdk.getData(function (data) {
 	width = data.width || 300;
 	height = data.height || 300;
 	imageurl = data.imageurl || 'https://experts-cb-sdk-wordpress.herokuapp.com/wordpress-logo.jpg';
-	alignment = data.alignment || 'center';
-	scale = data.scale || '';
+	alignment = data.alignment || '';
+	scale = data.scale || 'no';
     blockSettings();
 		sliderValues();
     setImage();
@@ -87,11 +108,15 @@ $(this).addClass('active');
 //disable sliderValues
 //#slider-image-width
 //#slider-image-height
-//$("#image-scale").change(function() {
-//	if (scale === "yes") {
-//		$("#slider-image-height").add('disabled="yes"');
-//	}
-//})
+$("#image-scale").click(function() {
+	if (document.querySelector('input[name="scale"]:checked').value === "yes") {
+		$("#slider-image-height").attr('disabled', '');
+		$("#slider-image-width").attr('disabled', '');
+	} else {
+		$("#slider-image-height").removeAttr('disabled');
+		$("#slider-image-width").removeAttr('disabled');
+	}
+})
 
 // set image url after user click
 $("#cms-images").children("img").click(function() {
