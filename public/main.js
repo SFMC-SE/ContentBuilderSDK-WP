@@ -1,26 +1,30 @@
 // IMAGE LOAD
 
 // get image data from data.json
-//$.getJSON("images.json", function(data) {
-//		var returnedImages = '';
+$.getJSON("images.json", function(data) {
+		var returnedImages = '';
 		// loop through each value to dynamically build html from json data values and build image elements
-//		$.each(data, function(key, value) {
-//				returnedImages += '<img class="slds-p-around_xxx-small ' + value.tag + '" src="' + value.location + '" alt="' + value.name + '" width="100" height="100">';
-//		});/
+		$.each(data, function(key, value) {
+				returnedImages += '<img class="slds-p-around_xxx-small ' + value.tag + '" src="' + value.location + '" alt="' + value.name + '" width="100" height="100">';
+		});
 		// append html generated to cms-images div
-//		$('#cms-images').html(returnedImages);
-//});
+		$('#cms-images').html(returnedImages);
+		callLinks();
+});
 
 // SDK
 
 var sdk = new window.sfdc.BlockSDK();
 
-var link, width, height, imageurl, alignment, scale;
+var link, width, height, scale, alignment, imageurl;
 
 function blockSettings () {
 	document.getElementById('image-link').value = link;
 	document.getElementById('slider-image-width').value = width;
 	document.getElementById('slider-image-height').value = height;
+	document.getElementById('slider-image-width-val').innerHTML = width;
+	document.getElementById('slider-image-height-val').innerHTML = height;
+
 	if (scale === "yes") {
 		document.getElementById('scale-yes').setAttribute("checked", "checked");
 		document.getElementById('#slider-image-height').setAttribute("disabled", "");
@@ -30,7 +34,8 @@ function blockSettings () {
 		document.getElementById('scale-no').setAttribute("checked", "checked");
 		document.getElementById('slider-image-height').removeAttribute("disabled");
 		document.getElementById('slider-image-width').removeAttribute("disabled");
-	};
+	}
+
 	if (alignment === "left") {
 		document.getElementById('image-left').setAttribute("checked", "checked");
 		document.getElementById('image-center').removeAttribute("checked");
@@ -58,10 +63,10 @@ function setImage() {
 	alignment = document.querySelector('input[name="alignment"]:checked').value;
 	scale = document.querySelector('input[name="scale"]:checked').value;
 	if (scale === "yes") {
-  sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img style="max-width: 100%" src="' + imageurl + '" /></a></div>');
-} else {
-	sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a></div>');
-}
+  	sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img style="max-width: 100%" src="' + imageurl + '" /></a></div>');
+	} else {
+		sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a></div>');
+	}
 	sdk.setData({
 	link: link,
 	width: width,
@@ -74,13 +79,12 @@ function setImage() {
 
 sdk.getData(function (data) {
 	link = data.link || '';
-	width = data.width || 300;
-	height = data.height || 300;
+	width = data.width || '300';
+	height = data.height || '300';
 	imageurl = data.imageurl || 'https://experts-cb-sdk-wordpress.herokuapp.com/wordpress-logo.jpg';
-	alignment = data.alignment || '';
+	alignment = data.alignment || 'center';
 	scale = data.scale || 'no';
     blockSettings();
-		sliderValues();
     setImage();
 });
 
@@ -106,6 +110,9 @@ $(this).addClass('active');
 // EVENT LISTENERS
 
 //disable sliderValues
+//$(document).ready(function(){
+//  blockSettings();
+//});
 
 $("#image-scale").click(function() {
 	if (document.querySelector('input[name="scale"]:checked').value === "yes") {
@@ -119,15 +126,17 @@ $("#image-scale").click(function() {
 		$("#slider-image-width").removeAttr('disabled');
 		$("#image-left").removeAttr('disabled');
 		$("#image-center").removeAttr('disabled');
-		$("#image-right").removeAttr('disabled');		
+		$("#image-right").removeAttr('disabled');
 	}
 })
 
 // set image url after user click
-$("#cms-images").children("img").click(function() {
-    imageurl = $(this).attr('src');
-    setImage();
-})
+function callLinks () {
+	$("#cms-images").children("img").click(function() {
+	    imageurl = $(this).attr('src');
+	    setImage();
+	})
+}
 
 $("#slider-image-width, #slider-image-height, #image-link, #image-alignment, #image-scale").change(function() {
     sliderValues();
