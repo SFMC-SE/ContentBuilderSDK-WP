@@ -106,15 +106,20 @@ $(this).addClass('active');
 // EVENT LISTENERS
 
 //disable sliderValues
-//#slider-image-width
-//#slider-image-height
+
 $("#image-scale").click(function() {
 	if (document.querySelector('input[name="scale"]:checked').value === "yes") {
 		$("#slider-image-height").attr('disabled', '');
 		$("#slider-image-width").attr('disabled', '');
+		$("#image-left").attr('disabled', '');
+		$("#image-center").attr('disabled', '');
+		$("#image-right").attr('disabled', '');
 	} else {
 		$("#slider-image-height").removeAttr('disabled');
 		$("#slider-image-width").removeAttr('disabled');
+		$("#image-left").removeAttr('disabled');
+		$("#image-center").removeAttr('disabled');
+		$("#image-right").removeAttr('disabled');		
 	}
 })
 
