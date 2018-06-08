@@ -1,26 +1,26 @@
 [{
 		"name": "Avatar1",
-		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar1.jpg",
+		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/images/avatar1.jpg",
         "tag": "all one"
 	},{
   		"name": "Avatar2",
-  		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar2.jpg",
+  		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/images/avatar2.jpg",
           "tag": "all two"
   	},{
     		"name": "Avatar3",
-    		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar3.jpg",
+    		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/images/avatar3.jpg",
             "tag": "all three"
     	},{
       		"name": "Avatar4",
-      		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar1.jpg",
+      		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/images/avatar1.jpg",
               "tag": "all one"
       	},{
         		"name": "Avatar5",
-        		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/avatar2.jpg",
+        		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/images/avatar2.jpg",
                 "tag": "all two"
         	},{
           		"name": "Avatar6",
-          		"location": "avatar3.jpg",
+          		"location": "https://experts-cb-sdk-wordpress.herokuapp.com/images/avatar3.jpg",
                   "tag": "all three"
           	}
 ]

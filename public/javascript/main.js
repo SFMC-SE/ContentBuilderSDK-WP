@@ -4,7 +4,7 @@
 
 console.log(wpEndPoint); //set on the page via NODE
 
-$.getJSON("images.json", function(data) {
+$.getJSON("/javascript/images.json", function(data) {
 		var returnedImages = '';
 		// loop through each value to dynamically build html from json data values and build image elements
 		$.each(data, function(key, value) {
@@ -12,6 +12,7 @@ $.getJSON("images.json", function(data) {
 		});
 		// append html generated to cms-images div
 		$('#cms-images').html(returnedImages);
+		$('#cms-images>img').css('cursor', 'pointer');
 		callLinks();
 });
 
@@ -30,29 +31,27 @@ function blockSettings () {
 
 	if (scale === "yes") {
 		document.getElementById('scale-yes').setAttribute("checked", "checked");
-		document.getElementById('#slider-image-height').setAttribute("disabled", "");
-		document.getElementById('#slider-image-width').setAttribute("disabled", "");
 	} else {
 		document.getElementById('scale-yes').removeAttribute("checked");
 		document.getElementById('scale-no').setAttribute("checked", "checked");
-		document.getElementById('slider-image-height').removeAttribute("disabled");
-		document.getElementById('slider-image-width').removeAttribute("disabled");
 	}
 
 	if (alignment === "left") {
 		document.getElementById('image-left').setAttribute("checked", "checked");
 		document.getElementById('image-center').removeAttribute("checked");
 		document.getElementById('image-right').removeAttribute("checked");
-	} else if (alignnment === "center") {
-		document.getElementById('image-left').removeAttribute("checked");
-		document.getElementById('image-center').setAttribute("checked", "checked");
-		document.getElementById('image-right').removeAttribute("checked");
-	} else {
+	} else if (alignment === "right") {
 		document.getElementById('image-left').removeAttribute("checked");
 		document.getElementById('image-center').removeAttribute("checked");
 		document.getElementById('image-right').setAttribute("checked", "checked");
+	} else {
+		document.getElementById('image-left').removeAttribute("checked");
+		document.getElementById('image-center').setAttribute("checked", "checked");
+		document.getElementById('image-right').removeAttribute("checked");
 	}
+	disableOptions();
 }
+
 
 function sliderValues () {
 	document.getElementById('slider-image-width-val').innerHTML = document.getElementById('slider-image-width').value;
@@ -84,7 +83,7 @@ sdk.getData(function (data) {
 	link = data.link || '';
 	width = data.width || '300';
 	height = data.height || '300';
-	imageurl = data.imageurl || 'https://experts-cb-sdk-wordpress.herokuapp.com/wordpress-logo.jpg';
+	imageurl = data.imageurl || 'https://experts-cb-sdk-wordpress.herokuapp.com/images/wordpress-logo.jpg';
 	alignment = data.alignment || 'center';
 	scale = data.scale || 'no';
     blockSettings();
@@ -110,28 +109,32 @@ $btns.removeClass('active');
 $(this).addClass('active');
 })
 
-// EVENT LISTENERS
-
-//disable sliderValues
-//$(document).ready(function(){
-//  blockSettings();
-//});
-
-$("#image-scale").click(function() {
+//disable slider values & alignment when scale to fit is selected
+function disableOptions () {
 	if (document.querySelector('input[name="scale"]:checked').value === "yes") {
-		$("#slider-image-height").attr('disabled', '');
-		$("#slider-image-width").attr('disabled', '');
-		$("#image-left").attr('disabled', '');
-		$("#image-center").attr('disabled', '');
-		$("#image-right").attr('disabled', '');
+		document.getElementById('slider-image-height').setAttribute("disabled","");
+		document.getElementById('slider-image-width').setAttribute("disabled","");
+		document.getElementById('image-left').setAttribute("disabled","");
+		document.getElementById('image-center').setAttribute("disabled","");
+		document.getElementById('image-right').setAttribute("disabled","");
 	} else {
-		$("#slider-image-height").removeAttr('disabled');
-		$("#slider-image-width").removeAttr('disabled');
-		$("#image-left").removeAttr('disabled');
-		$("#image-center").removeAttr('disabled');
-		$("#image-right").removeAttr('disabled');
+		document.getElementById('slider-image-height').removeAttribute("disabled");
+		document.getElementById('slider-image-width').removeAttribute("disabled");
+		document.getElementById('image-left').removeAttribute("disabled");
+		document.getElementById('image-center').removeAttribute("disabled");
+		document.getElementById('image-right').removeAttribute("disabled");
 	}
-})
+}
+
+// Event Listeners
+document.getElementById("image-scale").addEventListener("click", disableOptions);
+document.getElementById("slider-image-width").addEventListener("change", sliderValues);
+document.getElementById("slider-image-width").addEventListener("change", setImage);
+document.getElementById("slider-image-height").addEventListener("change", sliderValues);
+document.getElementById("slider-image-height").addEventListener("change", setImage);
+document.getElementById("image-link").addEventListener("change", setImage);
+document.getElementById("image-alignment").addEventListener("change", setImage);
+document.getElementById("image-scale").addEventListener("change", setImage);
 
 // set image url after user click
 function callLinks () {
@@ -141,7 +144,9 @@ function callLinks () {
 	})
 }
 
-$("#slider-image-width, #slider-image-height, #image-link, #image-alignment, #image-scale").change(function() {
-    sliderValues();
-    setImage();
-})
+//function callLinks () {
+//	document.getElementById("cms-images").getElementsByTagName("img").addEventListener("click", function(
+//		imageurl = img.src;
+//		setImage();
+//	));
+//}
