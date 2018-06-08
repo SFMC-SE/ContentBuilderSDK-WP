@@ -1,8 +1,10 @@
 // IMAGE LOAD
 
-// get image data from data.json
+// get image data from images.json
 
 console.log(wpEndPoint); //set on the page via NODE
+
+// function on change of dropdown issue ajax call with filter for media category
 
 $.getJSON("/javascript/images.json", function(data) {
 		var returnedImages = '';
@@ -15,6 +17,21 @@ $.getJSON("/javascript/images.json", function(data) {
 		$('#cms-images>img').css('cursor', 'pointer');
 		callLinks();
 });
+
+//var media = wpEndPoint;
+
+//$.getJSON( wpEndPoint, function() {
+//  console.log( "success" );
+//})
+//  .done(function() {
+//    console.log( "second success" );
+//  })
+//  .fail(function() {
+//    console.log( "error" );
+//  })
+//  .always(function() {
+//    console.log( "complete" );
+//  });
 
 // SDK
 
@@ -143,10 +160,3 @@ function callLinks () {
 	    setImage();
 	})
 }
-
-//function callLinks () {
-//	document.getElementById("cms-images").getElementsByTagName("img").addEventListener("click", function(
-//		imageurl = img.src;
-//		setImage();
-//	));
-//}
