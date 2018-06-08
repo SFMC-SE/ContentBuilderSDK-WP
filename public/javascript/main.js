@@ -1,37 +1,50 @@
-// IMAGE LOAD
-
-// get image data from images.json
-
-console.log(wpEndPoint); //set on the page via NODE
-
 // function on change of dropdown issue ajax call with filter for media category
 
-$.getJSON("/javascript/images.json", function(data) {
-		var returnedImages = '';
+//$.getJSON("/javascript/images.json", function(data) {
+//		var returnedImages = '';
+		// loop through each value to dynamically build html from json data values and build image elements
+//		$.each(data, function(key, value) {
+//				returnedImages += '<img class="slds-p-around_xxx-small ' + value.tag + '" src="' + value.location + '" alt="' + value.name + '" width="100" height="100">';
+//		});
+		// append html generated to cms-images div
+//		$('#cms-images').html(returnedImages);
+//		$('#cms-images>img').css('cursor', 'pointer');
+//		callLinks();
+//});
+
+// get image data from images.json
+var returnedImages, imageJSON, imageJSONExtend, numMedia, numPages;
+
+(function() {
+ $.getJSON(wpEndPoint + '?per_page=100&fields=source_url')
+
+	.done(function(data, status, request) {
+		numMedia = request.getResponseHeader('x-wp-total');
+		numPages = request.getResponseHeader('x-wp-totalpages');
+		console.log(numMedia);
+		console.log(numPages);
 		// loop through each value to dynamically build html from json data values and build image elements
 		$.each(data, function(key, value) {
-				returnedImages += '<img class="slds-p-around_xxx-small ' + value.tag + '" src="' + value.location + '" alt="' + value.name + '" width="100" height="100">';
+				returnedImages += '<img class="slds-p-around_xxx-small" src="' + value.source_url + '" width="100" height="100">';
 		});
 		// append html generated to cms-images div
 		$('#cms-images').html(returnedImages);
 		$('#cms-images>img').css('cursor', 'pointer');
 		callLinks();
-});
+		//build json
+		for (var i=1; i <= numPages; i++) {
+			imageJSON = $.getJSON(wpEndPoint + '?page=' + i + '&per_page=100&fields=source_url,media_details.file')
+//not working use each maybe...
+			$.extend(imageJSONExtend,imageJSON);
+		}
+					console.log(imageJSONExtend);
+//		var obj = jQuery.parseJSON(imageJSON);
+//		console.log(obj.lenth);
+//		var numelements = imageJSON.source_url.length;
+//		console.log(numelements);
 
-//var media = wpEndPoint;
-
-//$.getJSON( wpEndPoint, function() {
-//  console.log( "success" );
-//})
-//  .done(function() {
-//    console.log( "second success" );
-//  })
-//  .fail(function() {
-//    console.log( "error" );
-//  })
-//  .always(function() {
-//    console.log( "complete" );
-//  });
+		})
+})();
 
 // SDK
 
