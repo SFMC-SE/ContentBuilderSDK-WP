@@ -107,7 +107,7 @@ function setImage() {
 	alignment = document.querySelector('input[name="alignment"]:checked').value;
 	scale = document.querySelector('input[name="scale"]:checked').value;
 	if (scale === "yes") {
-  	sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img style="max-width: 100%" src="' + imageurl + '" /></a></div>');
+  	sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img style="width: 100%" src="' + imageurl + '" /></a></div>');
 	} else {
 		sdk.setContent('<div style="text-align: ' + alignment + ';"> <a href="' + link + '"><img height="' + height + '" width="' + width + '" src="' + imageurl + '" /></a></div>');
 	}
