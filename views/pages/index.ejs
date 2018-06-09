@@ -13,6 +13,11 @@
   <script>
     var wpEndPoint = '<%= apiurl %>';
   </script>
+  <style>
+  .grow { transition: all .2s ease-in-out; }
+  .grow:hover { transform: scale(2); }
+  }
+  </style>
 </head>
 
 <body class="slds-m-around_small">
@@ -171,7 +176,7 @@
     </div>
     <!-- /image filters -->
     <!-- returned images -->
-    <div id="cms-images">
+    <div class="zoom" id="cms-images">
     </div>
   </div>
   <!-- /returned images -->
