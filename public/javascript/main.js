@@ -1,50 +1,62 @@
 // function on change of dropdown issue ajax call with filter for media category
 
-//$.getJSON("/javascript/images.json", function(data) {
-//		var returnedImages = '';
-		// loop through each value to dynamically build html from json data values and build image elements
-//		$.each(data, function(key, value) {
-//				returnedImages += '<img class="slds-p-around_xxx-small ' + value.tag + '" src="' + value.location + '" alt="' + value.name + '" width="100" height="100">';
-//		});
-		// append html generated to cms-images div
-//		$('#cms-images').html(returnedImages);
-//		$('#cms-images>img').css('cursor', 'pointer');
-//		callLinks();
-//});
-
 // get image data from images.json
-var returnedImages, imageJSON, imageJSONExtend, numMedia, numPages;
+var returnedImages, imageJSON, numMedia, numPages;
 
 (function() {
  $.getJSON(wpEndPoint + '?per_page=100&fields=source_url')
 
 	.done(function(data, status, request) {
+		returnedImages = "";
 		numMedia = request.getResponseHeader('x-wp-total');
-		numPages = request.getResponseHeader('x-wp-totalpages');
-		console.log(numMedia);
-		console.log(numPages);
+//		numPages = request.getResponseHeader('x-wp-totalpages');
+//		console.log(numMedia);
+//		console.log(numPages);
 		// loop through each value to dynamically build html from json data values and build image elements
 		$.each(data, function(key, value) {
 				returnedImages += '<img class="slds-p-around_xxx-small" src="' + value.source_url + '" width="100" height="100">';
 		});
-		// append html generated to cms-images div
+		// append html generated to cms-images div & update results returned count
 		$('#cms-images').html(returnedImages);
 		$('#cms-images>img').css('cursor', 'pointer');
+		$('#image-selection-count').html(numMedia + ' total images. First 100 returned.');
 		callLinks();
-		//build json
-		for (var i=1; i <= numPages; i++) {
-			imageJSON = $.getJSON(wpEndPoint + '?page=' + i + '&per_page=100&fields=source_url,media_details.file')
-//not working use each maybe...
-			$.extend(imageJSONExtend,imageJSON);
-		}
-					console.log(imageJSONExtend);
-//		var obj = jQuery.parseJSON(imageJSON);
-//		console.log(obj.lenth);
-//		var numelements = imageJSON.source_url.length;
-//		console.log(numelements);
+//		buildJSON();
+	})
+	})();
 
-		})
-})();
+// function to build JSON file of all results to be using in interaction and only make one call to WP API
+// function buildJSON () {
+//	imageJSON = '[';
+
+//	$.getJSON(wpEndPoint + '?page=1&per_page=2&fields=source_url,media_details.file')
+//		.done(function(data) {
+//			$.each( data, function( key, value ) {
+//				imageJSON += '{"source_url":"' + value.source_url + '","media_details":"' + value.media_details.file + '"},';
+//			});
+//			imageJSON = imageJSON.replace(/,$/, "]")
+//			getUniqueCategories();
+//			console.log(imageJSON);
+//		});
+// }
+
+// old code for pagination of API get media call
+//		for (var i=1; i <= numPages; i++) {
+//			imageJSON = $.getJSON(wpEndPoint + '?page=' + i + '&per_page=100&fields=source_url,media_details.file')
+//			$.each(data, function(key, value) {
+//					imageJSON += '{"source_url":"' + value.source_url + '","media_details":"' + value.media_details.file + '"}';
+//			});
+//			}
+			// end build JSON function
+
+//function getUniqueCategories () {
+//	var categories = "";
+//	data = imagesJSON;
+// 	categories = _.countBy(data, function(data) { return data.media_details; });
+//	console.log(categories);
+//}
+
+
 
 // SDK
 
@@ -120,24 +132,13 @@ sdk.getData(function (data) {
     setImage();
 });
 
-
-// BUTTONS
-
-// filter results based on buttons selected
-var $btns = $('.slds-button_neutral').click(function() {
-// if all is selected show all elements in main div - by default the page loads with all values selected
-if (this.id == 'all') {
-		$('#cms-images > img').show();
-} else {
-		// take id from selected button and create var with class value same as id, hide those elements that don't have that class
-		var $el = $('.' + this.id).show();
-		$('#cms-images > img').not($el).hide();
+// set image url after user click
+function callLinks () {
+	$("#cms-images").children("img").click(function() {
+	    imageurl = $(this).attr('src');
+	    setImage();
+	})
 }
-// remove active class from all buttons
-$btns.removeClass('active');
-// add active class to selected button
-$(this).addClass('active');
-})
 
 //disable slider values & alignment when scale to fit is selected
 function disableOptions () {
@@ -156,7 +157,29 @@ function disableOptions () {
 	}
 }
 
+// rebuild image list based on category selected
+function imageRebuild () {
+	var filterCategory, filteredCount, filteredImages;
+	filterCategory = document.getElementById('image-filter').value;
+	$.getJSON(wpEndPoint + '?search=' + filterCategory + '&per_page=100&fields=source_url,media_details.file')
+
+	 .done(function(data, status, request) {
+		 filteredImages = "";
+		 filteredCount = request.getResponseHeader('x-wp-total');
+		 // loop through each value to dynamically build html from json data values and build image elements
+		 $.each(data, function(key, value) {
+				 filteredImages += '<img class="slds-p-around_xxx-small" src="' + value.source_url + '" width="100" height="100">';
+		 });
+		 // replace html in cms-images div & update results returned count
+		 $('#cms-images').html(filteredImages);
+		 $('#image-selection-count').html(filteredCount + ' results returned');
+		 $('#cms-images>img').css('cursor', 'pointer');
+		 callLinks();
+})
+}
+
 // Event Listeners
+document.getElementById("image-filter").addEventListener("change", imageRebuild);
 document.getElementById("image-scale").addEventListener("click", disableOptions);
 document.getElementById("slider-image-width").addEventListener("change", sliderValues);
 document.getElementById("slider-image-width").addEventListener("change", setImage);
@@ -165,11 +188,3 @@ document.getElementById("slider-image-height").addEventListener("change", setIma
 document.getElementById("image-link").addEventListener("change", setImage);
 document.getElementById("image-alignment").addEventListener("change", setImage);
 document.getElementById("image-scale").addEventListener("change", setImage);
-
-// set image url after user click
-function callLinks () {
-	$("#cms-images").children("img").click(function() {
-	    imageurl = $(this).attr('src');
-	    setImage();
-	})
-}
