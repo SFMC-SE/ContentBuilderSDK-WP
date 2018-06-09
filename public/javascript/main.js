@@ -161,7 +161,7 @@ function disableOptions () {
 function imageRebuild () {
 	var filterCategory, filteredCount, filteredImages;
 	filterCategory = document.getElementById('image-filter').value;
-	$.getJSON(wpEndPoint + '?search=' + filterCategory + '&per_page=100&fields=source_url,media_details.file')
+	$.getJSON(wpEndPoint + '?search=/' + filterCategory + '&per_page=100&fields=source_url,media_details.file')
 
 	 .done(function(data, status, request) {
 		 filteredImages = "";
