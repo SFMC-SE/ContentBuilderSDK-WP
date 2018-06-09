@@ -14,7 +14,7 @@ var returnedImages, imageJSON, numMedia, numPages;
 //		console.log(numPages);
 		// loop through each value to dynamically build html from json data values and build image elements
 		$.each(data, function(key, value) {
-				returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" width="100" height="100">';
+				returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" width="100" height="100" data-aos="fade-up">';
 		});
 		// append html generated to cms-images div & update results returned count
 		$('#cms-images').html(returnedImages);
