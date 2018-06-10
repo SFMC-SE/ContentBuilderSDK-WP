@@ -1,19 +1,17 @@
-var returnedImages, imageJSON, numMedia, numPages, mediaSource, mediaCategory, mediaPath, folder, imageJSON, categoryValues;
-mediaSource = [];
-mediaCategory = [];
-folder = '';
-mediaPath = '';
-imageJSON = '';
-categoryValues = '';
+// function on change of dropdown issue ajax call with filter for media category
 
-// get image data from WP API
+// get image data from images.json
+var returnedImages, imageJSON, numMedia, numPages;
+
 (function() {
  $.getJSON(wpEndPoint + '?per_page=100&fields=source_url')
 
 	.done(function(data, status, request) {
 		returnedImages = "";
 		numMedia = request.getResponseHeader('x-wp-total');
-		numPages = request.getResponseHeader('x-wp-totalpages');
+//		numPages = request.getResponseHeader('x-wp-totalpages');
+//		console.log(numMedia);
+//		console.log(numPages);
 		// loop through each value to dynamically build html from json data values and build image elements
 		$.each(data, function(key, value) {
 				returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" width="100" height="100">';
@@ -23,68 +21,44 @@ categoryValues = '';
 		$('#cms-images>img').css('cursor', 'pointer');
 		$('#image-selection-count').html(numMedia + ' total images. First 100 returned.');
 		callLinks();
-    buildArrays();
+//		buildJSON();
 	})
 	})();
 
-// loop through the total number of pages of media and store values in an array
-function buildArrays () {
-completedRequests = 0;
-for (var i=1; i <= numPages; i++) {
+// function to build JSON file of all results to be using in interaction and only make one call to WP API
+// function buildJSON () {
+//	imageJSON = '[';
 
-var imageJSON = $.getJSON(wpEndPoint + '?page=' + i + '&per_page=100&fields=source_url,media_details.file', function() {
-  })
-  .done(function(data, status, request) {
-    $.each(data, function(i, e){
-      mediaSource.push(e.source_url);
-      mediaPath = e.media_details.file;
-      folder = mediaPath.substring(0, mediaPath.indexOf("/"));
-      mediaCategory.push(folder);
-      completedRequests++;
-      if (completedRequests === parseInt(numMedia, 10)) {
-        getUniqueCategories();
-      }
-    });
-  })
-}
-}
+//	$.getJSON(wpEndPoint + '?page=1&per_page=2&fields=source_url,media_details.file')
+//		.done(function(data) {
+//			$.each( data, function( key, value ) {
+//				imageJSON += '{"source_url":"' + value.source_url + '","media_details":"' + value.media_details.file + '"},';
+//			});
+//			imageJSON = imageJSON.replace(/,$/, "]")
+//			getUniqueCategories();
+//			console.log(imageJSON);
+//		});
+// }
 
-// determines the unique values/folders in WP and appends to the category drop down filter to allow for dynamic options
-function getUniqueCategories () {
-  var returnedCategories = '';
-  var categoryValues = mediaCategory.filter(function(unique, i, mediaCategory) {
-      return i == mediaCategory.indexOf(unique);
-  });
+// old code for pagination of API get media call
+//		for (var i=1; i <= numPages; i++) {
+//			imageJSON = $.getJSON(wpEndPoint + '?page=' + i + '&per_page=100&fields=source_url,media_details.file')
+//			$.each(data, function(key, value) {
+//					imageJSON += '{"source_url":"' + value.source_url + '","media_details":"' + value.media_details.file + '"}';
+//			});
+//			}
+			// end build JSON function
 
-  $.each(categoryValues, function(index, value) {
-    console.log(value);
-    var option = $('<option></option>').attr("value", value).text(value.substr(0,1).toUpperCase()+value.substr(1));
-    $("#image-filter").append(option);
-  });
-}
+//function getUniqueCategories () {
+//	var categories = "";
+//	data = imagesJSON;
+// 	categories = _.countBy(data, function(data) { return data.media_details; });
+//	console.log(categories);
+//}
 
-// rebuild image list based on category selected
-function imageRebuild () {
-	var filterCategory, filteredCount, filteredImages;
-	filterCategory = document.getElementById('image-filter').value;
-	$.getJSON(wpEndPoint + '?search=/' + filterCategory + '&per_page=100&fields=source_url,media_details.file')
 
-	 .done(function(data, status, request) {
-		 filteredImages = "";
-		 filteredCount = request.getResponseHeader('x-wp-total');
-		 // loop through each value to dynamically build html from json data values and build image elements
-		 $.each(data, function(key, value) {
-				 filteredImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" width="100" height="100">';
-		 });
-		 // replace html in cms-images div & update results returned count
-		 $('#cms-images').html(filteredImages);
-		 $('#image-selection-count').html(filteredCount + ' results returned');
-		 $('#cms-images>img').css('cursor', 'pointer');
-		 callLinks();
-})
-}
 
-// SDK logic to set and retrieve attributes of block
+// SDK
 
 var sdk = new window.sfdc.BlockSDK();
 
@@ -181,6 +155,27 @@ function disableOptions () {
 		document.getElementById('image-center').removeAttribute("disabled");
 		document.getElementById('image-right').removeAttribute("disabled");
 	}
+}
+
+// rebuild image list based on category selected
+function imageRebuild () {
+	var filterCategory, filteredCount, filteredImages;
+	filterCategory = document.getElementById('image-filter').value;
+	$.getJSON(wpEndPoint + '?search=/' + filterCategory + '&per_page=100&fields=source_url,media_details.file')
+
+	 .done(function(data, status, request) {
+		 filteredImages = "";
+		 filteredCount = request.getResponseHeader('x-wp-total');
+		 // loop through each value to dynamically build html from json data values and build image elements
+		 $.each(data, function(key, value) {
+				 filteredImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" width="100" height="100">';
+		 });
+		 // replace html in cms-images div & update results returned count
+		 $('#cms-images').html(filteredImages);
+		 $('#image-selection-count').html(filteredCount + ' results returned');
+		 $('#cms-images>img').css('cursor', 'pointer');
+		 callLinks();
+})
 }
 
 // Event Listeners
