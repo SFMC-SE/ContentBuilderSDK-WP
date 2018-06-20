@@ -16,7 +16,8 @@ categoryValues = '';
 		numPages = request.getResponseHeader('x-wp-totalpages');
 		// loop through each value to dynamically build html from json data values and build image elements
 		$.each(data, function(key, value) {
-				returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" width="100" height="100">';
+//      returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" width="100" height="100">';
+				returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" style="width:100px;height:100px;">';
 		});
 		// append html generated to cms-images div & update results returned count
 		$('#cms-images').html(returnedImages);
