@@ -8,7 +8,7 @@ categoryValues = '';
 
 // get image data from WP API
 (function() {
- $.getJSON(wpEndPoint + '?per_page=100&fields=source_url')
+ $.getJSON(wpEndPoint + '?per_page=100&fields=source_url&filter[orderby]=date&order=asc')
 
 	.done(function(data, status, request) {
 		returnedImages = "";
@@ -68,7 +68,7 @@ function getUniqueCategories () {
 function imageRebuild () {
 	var filterCategory, filteredCount, filteredImages;
 	filterCategory = document.getElementById('image-filter').value;
-	$.getJSON(wpEndPoint + '?search=' + filterCategory + '/&per_page=100&fields=source_url,media_details.file')
+	$.getJSON(wpEndPoint + '?search=' + filterCategory + '/&per_page=100&fields=source_url,media_details.file&filter[orderby]=date&order=asc')
 
 	 .done(function(data, status, request) {
 		 filteredImages = "";
