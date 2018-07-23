@@ -17,7 +17,7 @@ categoryValues = '';
 		// loop through each value to dynamically build html from json data values and build image elements
 		$.each(data, function(key, value) {
 //      returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" width="100" height="100">';
-				returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" style="width:100px;height:100px;">';
+				returnedImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" style="width:90px;height:90px;">';
 		});
 		// append html generated to cms-images div & update results returned count
 		$('#cms-images').html(returnedImages);
@@ -75,7 +75,7 @@ function imageRebuild () {
 		 filteredCount = request.getResponseHeader('x-wp-total');
 		 // loop through each value to dynamically build html from json data values and build image elements
 		 $.each(data, function(key, value) {
-				 filteredImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" style="width:100px;height:100px;">';
+				 filteredImages += '<img class="slds-p-around_xxx-small grow" src="' + value.source_url + '" style="width:90px;height:90px;">';
 		 });
 		 // replace html in cms-images div & update results returned count
 		 $('#cms-images').html(filteredImages);
